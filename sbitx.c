@@ -63,7 +63,7 @@ void tr_switch(int tx_on);
 // The FFTW_ESTIMATE mode seems to make completely incorrect Wisdom plan choices sometimes, and is not recommended.
 // Wisdom plans found in an existing Wisdom file will negate the need for time consuming Wisdom plan calculations
 // if the Wisdom plans in the file were generated at the same or more rigorous level.
-#define WISDOM_MODE FFTW_MEASURE
+#define WISDOM_MODE FFTW_EXHAUSTIVE
 #define PLANTIME -1		// spend no more than plantime seconds finding the best FFT algorithm. -1 turns the platime cap off.
 char wisdom_file[] = STATEDIR "/sbitx_wisdom.wis";		// Moved to default data directory - N3SB
 
