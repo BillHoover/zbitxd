@@ -33,6 +33,7 @@ The initial sync between the gui values, the core radio values, settings, et al 
 #include <signal.h>
 #include <systemd/sd-daemon.h>
 #include <systemd/sd-journal.h>
+
 #include "sdr.h"
 #include "sound.h"
 #include "sdr_ui.h"

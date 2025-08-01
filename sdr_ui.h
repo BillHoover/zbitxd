@@ -28,8 +28,8 @@ extern int display_freq;
 #define FONT_FT8_RX 6
 #define FONT_FT8_TX 7
 #define FONT_SMALL_FIELD_VALUE 8
-#define FONT_CW_RX 9 
-#define FONT_CW_TX 10 
+#define FONT_CW_RX 9
+#define FONT_CW_TX 10
 #define FONT_FLDIGI_RX 11
 #define FONT_FLDIGI_TX 12
 #define FONT_TELNET 13
@@ -39,7 +39,6 @@ extern int display_freq;
 #define FF_MYCALL 16
 #define FF_CALLER 17
 #define FF_GRID 18
-
 
 void enter_qso();
 void call_wipe();
@@ -52,8 +51,8 @@ void macro_get_keys(char *output);
 void update_log_ed();
 void write_call_log();
 
-void tlog(char * id, char * text, int p);
-//void tlogf(char * format, ...);
+void tlog(char *id, char *text, int p);
+// void tlogf(char * format, ...);
 
 // 006 : Click fix by Beckman
 // 007 : FT8 webui fix and coloring

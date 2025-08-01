@@ -17,6 +17,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <pthread.h>
+
 #include "sdr_ui.h"
 
 void telnet_open(char *server);

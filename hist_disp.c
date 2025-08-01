@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <math.h>
+
 #include "sdr_ui.h"
 #include "logbook.h"
 #include "hist_disp.h"

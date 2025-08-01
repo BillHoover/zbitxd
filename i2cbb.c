@@ -18,6 +18,7 @@
 #include <stdint.h>
 #include <time.h>
 #include <assert.h>
+
 #include "i2cbb.h"
 
 static uint8_t PIN_SDA;
