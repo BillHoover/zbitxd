@@ -193,8 +193,6 @@ static int i2c_write_byte(int send_start, int send_stop, uint8_t byte) {
     int nack = 0;
 
 		static int mutex = 0;
-		if (mutex)
-			printf("double!\n");
 		mutex++;
     if (send_start) {
         i2c_start_cond();
