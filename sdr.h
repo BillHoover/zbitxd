@@ -155,7 +155,7 @@ static inline double const cnrm(const complex double x) {
 struct rx {
   long tuned_bin; // tuned bin (this should translate to freq)
   short mode;     // USB/LSB/AM/FM (cw is narrow SSB, so not listed)
-              // FFT plan to convert back to time domain
+                  // FFT plan to convert back to time domain
   int low_hz;
   int high_hz;
   fftw_plan plan_rev;
