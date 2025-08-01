@@ -491,7 +491,7 @@ static int sbitx_ft8_decode(float *signal, int num_samples, bool is_ft8) {
         write_console(FONT_FT8_RX, buff);
 
       //				save_message('R', cand->score,
-      //cand-snr,freq_hz, message.text);
+      // cand-snr,freq_hz, message.text);
       n_decodes++;
     }
   }
@@ -642,7 +642,7 @@ void ft8_rx(int32_t *samples, int count) {
     ft8_rx_buff_index = 0;
 
   //	printf("ft8 decoding trigger index %d, slot_second %d\n",
-  //ft8_rx_buff_index, slot_second); we should have atleast 12 seconds of
+  // ft8_rx_buff_index, slot_second); we should have atleast 12 seconds of
   // samples to decode
   if (ft8_rx_buff_index >= 13 * 12000 && slot_second > 13)
     ft8_do_decode = 1;

@@ -343,7 +343,7 @@ void fldigi_read() {
         buffer[1] = 0;
       write_console(FONT_FLDIGI_RX, buffer);
       //				printf("fldigi rx.get_data{%s}\n",
-      //buffer);
+      // buffer);
     }
   }
   fldigi_retry_at = millis() + 250;

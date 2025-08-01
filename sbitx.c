@@ -571,7 +571,7 @@ double agc2(struct rx *r) {
     agc_gain_should_be = 100000000000 / signal_strength;
   r->signal_strength = signal_strength;
   //	printf("Agc temp, g:%g, s:%g, f:%g ", r->agc_gain, signal_strength,
-  //agc_gain_should_be);
+  // agc_gain_should_be);
 
   double agc_ramp = 0.0;
 
@@ -1079,7 +1079,7 @@ void calibrate_band_power(struct power_settings *b) {
       delay(20);
       avg += fwdpower / 10; // fwdpower in 1/10th of a watt
       //			printf("  avg %d, fwd %d scale %g\n", avg,
-      //fwdpower, b->scale);
+      // fwdpower, b->scale);
     }
     avg /= 10;
     printf("*%d, f %d : avg %d, max = %d\n", i, b->f_start, avg, b->max_watts);

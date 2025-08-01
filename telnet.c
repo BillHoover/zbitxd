@@ -213,7 +213,7 @@ void *telnet_thread_function(void *server) {
       *q = 0;
 
       //			printf("compressed [%s] to [%s]\n", buff,
-      //buff2);
+      // buff2);
       write_console(FONT_TELNET, buff2);
     }
   }

@@ -719,9 +719,9 @@ int sound_loop() {
   snd_pcm_prepare(loopback_play_handle);
 
   /*
-    pcmreturn = snd_pcm_writei(pcm_play_handle, data_out, frames*2);		//
-  Get a head start on filling the queue #if DEBUG > 0 printf("Pre-filling play
-  and loopback queues\n"); printf("Playback buffer filled with %d
+    pcmreturn = snd_pcm_writei(pcm_play_handle, data_out, frames*2);
+  // Get a head start on filling the queue #if DEBUG > 0 printf("Pre-filling
+  play and loopback queues\n"); printf("Playback buffer filled with %d
   samples\n",pcmreturn); #endif pcmreturn = snd_pcm_writei(loopback_play_handle,
   data_out, frames);		// Get a head start on filling the queue #if
   DEBUG > 0 printf("Loopback buffer filled with %d samples\n",pcmreturn); #endif
@@ -871,11 +871,11 @@ int sound_loop() {
 #endif
 
 #if DEBUG < 2
-        // snd_pcm_recover(pcm_play_handle, pcmreturn, 1);		// Does not
-        // provide detailed error message
+        // snd_pcm_recover(pcm_play_handle, pcmreturn, 1);		// Does
+        // not provide detailed error message
 #else
-        // snd_pcm_recover(pcm_play_handle, pcmreturn, 0);		// Provides
-        // detailed error message
+        // snd_pcm_recover(pcm_play_handle, pcmreturn, 0);		//
+        // Provides detailed error message
 #endif
       }
 

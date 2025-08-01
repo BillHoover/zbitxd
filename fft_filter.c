@@ -225,8 +225,8 @@ int filter_tune(struct filter *f, float const low, float const high,
       f->fir_coeff[n] = gain;
     else
       f->fir_coeff[n] = 0;
-    //		printf("#1 %d  %g  %g %g before windowing: %g,%g\n", n, s, low, high,
-    //creal(f->fir_coeff[n]), cimag(f->fir_coeff[n]));
+    //		printf("#1 %d  %g  %g %g before windowing: %g,%g\n", n, s, low,
+    //high, creal(f->fir_coeff[n]), cimag(f->fir_coeff[n]));
   }
 
   window_filter(f->L, f->M, f->fir_coeff, kaiser_beta);

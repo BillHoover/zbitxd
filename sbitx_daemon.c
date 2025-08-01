@@ -1686,7 +1686,7 @@ int do_status(struct field *f, int event, int a, int b, int c) {
     // struct tm *tmp = gmtime(&now);
     // sprintf(buff, "%04d/%02d/%02d %02d:%02d:%02dZ",
     //	tmp->tm_year + 1900, tmp->tm_mon + 1, tmp->tm_mday, tmp->tm_hour,
-    //tmp->tm_min, tmp->tm_sec); int width = measure_text(gfx, buff,
+    // tmp->tm_min, tmp->tm_sec); int width = measure_text(gfx, buff,
     // FONT_FIELD_LABEL); int line_height = font_table[f->font_index].height;
     // strcpy(f->value, buff);
     f->is_dirty = 1;
@@ -1695,7 +1695,7 @@ int do_status(struct field *f, int event, int a, int b, int c) {
     // sprintf(buff, "sBitx %s %s %04d/%02d/%02d %02d:%02d:%02dZ",
     //	get_field("#mycallsign")->value, get_field("#mygrid")->value,
     //	tmp->tm_year + 1900, tmp->tm_mon + 1, tmp->tm_mday, tmp->tm_hour,
-    //tmp->tm_min, tmp->tm_sec); gtk_window_set_title( GTK_WINDOW(window),
+    // tmp->tm_min, tmp->tm_sec); gtk_window_set_title( GTK_WINDOW(window),
     // buff);
 
     return 1;
@@ -1764,7 +1764,7 @@ int do_text(struct field *f, int event, int a, int b, int c) {
     ////draw the text cursor, if there is no text, the text baseline is zero
     // if (f_focus == f){
     //	fill_rect(gfx, f->x + text_line_width+3, y+16, 9, 2,
-    //COLOR_SELECTED_BOX);
+    // COLOR_SELECTED_BOX);
     // }
 
     return 1;
@@ -1952,7 +1952,7 @@ int do_kbd(struct field *f, int event, int a, int b, int c) {
     //	width = measure_text(gfx, f->value, value_font);
     //	label_y = f->y + (f->height - label_height)/2;
     //	draw_text(gfx, f->x + f->width/2 - width/2, label_y, f->value,
-    //value_font);
+    // value_font);
     // }
     return 1;
   }
@@ -2017,7 +2017,7 @@ int do_macro(struct field *f, int event, int a, int b, int c) {
     //	if (strlen(f->label)){
     //		draw_text(gfx, f->x+5, f->y+5 ,  f->label, FONT_FIELD_LABEL);
     //		draw_text(gfx, f->x+5 , f->y+f->height - 20 , f->value ,
-    //f->font_index);
+    // f->font_index);
     //	}
     //	else
     //		draw_text(gfx, f->x+offset , f->y+5, f->value , f->font_index);
