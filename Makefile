@@ -7,7 +7,7 @@ SHAREDIR ?= $(PREFIX)/share/$(OWNER)
 SOURCES = $(wildcard *.c)
 OBJECTS = $(SOURCES:.c=.o)
 HEADERS = $(wildcard *.h)
-CFLAGS = -I.
+CFLAGS = -I. -O3 -mcpu=native -fomit-frame-pointer -fstrict-aliasing
 LIBS = -lwiringPi -lasound -lm -lfftw3 -lfftw3f -pthread -lncurses -lsqlite3 -lsystemd ft8_lib/libft8.a
 ifdef SBITX_UNUSED
 ## remove and print unused code
