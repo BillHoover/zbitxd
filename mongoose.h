@@ -411,7 +411,7 @@ typedef int socklen_t;
 #define mkdir(a, b) _mkdir(a)
 
 #ifndef S_ISDIR
-#define S_ISDIR(x) (((x)&_S_IFMT) == _S_IFDIR)
+#define S_ISDIR(x) (((x) & _S_IFMT) == _S_IFDIR)
 #endif
 
 #ifndef MG_ENABLE_DIRLIST
@@ -709,11 +709,9 @@ struct mg_str {
   size_t len;      // String len
 };
 
-#define MG_NULL_STR                                                            \
-  { NULL, 0 }
+#define MG_NULL_STR {NULL, 0}
 
-#define MG_C_STR(a)                                                            \
-  { (a), sizeof(a) - 1 }
+#define MG_C_STR(a) {(a), sizeof(a) - 1}
 
 // Using macro to avoid shadowing C++ struct constructor, see #1298
 #define mg_str(s) mg_str_s(s)
@@ -847,8 +845,8 @@ uint64_t mg_millis(void);
 #define mg_htonl(x) mg_ntohl(x)
 
 #define MG_U32(a, b, c, d)                                                     \
-  (((uint32_t)((a)&255) << 24) | ((uint32_t)((b)&255) << 16) |                 \
-   ((uint32_t)((c)&255) << 8) | (uint32_t)((d)&255))
+  (((uint32_t)((a) & 255) << 24) | ((uint32_t)((b) & 255) << 16) |             \
+   ((uint32_t)((c) & 255) << 8) | (uint32_t)((d) & 255))
 
 // Linked list management macros
 #define LIST_ADD_HEAD(type_, head_, elem_)                                     \
