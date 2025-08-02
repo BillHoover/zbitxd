@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <fftw3.h>
 #include <linux/types.h>
+#define __USE_MISC
 #include <math.h>
 #include <netinet/in.h>
 #include <pthread.h>

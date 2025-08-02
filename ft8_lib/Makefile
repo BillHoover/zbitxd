@@ -1,5 +1,5 @@
 #CFLAGS = -O3 -ggdb3 -fsanitize=address -static-libasan
-CFLAGS = -O3 -ggdb3 
+CFLAGS = -O3 
 CPPFLAGS = -std=c11 -I.
 #LDFLAGS = -lm -fsanitize=address
 #LDFLAGS = -lm 

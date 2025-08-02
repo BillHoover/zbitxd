@@ -72,9 +72,11 @@
 #include <complex.h>
 #include <ctype.h>
 #include <fftw3.h>
+#define __USE_MISC
 #include <math.h>
 #include <pthread.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
