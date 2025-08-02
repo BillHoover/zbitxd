@@ -7,7 +7,7 @@ SHAREDIR ?= $(PREFIX)/share/$(OWNER)
 SOURCES = $(wildcard *.c)
 OBJECTS = $(SOURCES:.c=.o)
 HEADERS = $(wildcard *.h)
-CFLAGS = -I. -O3 -mcpu=native -fomit-frame-pointer -fstrict-aliasing
+CFLAGS = -I. -O3 -march=native -mtune=native -fomit-frame-pointer -fstrict-aliasing
 LIBS = -lwiringPi -lasound -lm -lfftw3 -lfftw3f -pthread -lncurses -lsqlite3 -lsystemd ft8_lib/libft8.a
 ifdef SBITX_UNUSED
 ## remove and print unused code
@@ -22,11 +22,21 @@ CC = gcc
 LINK = gcc
 STRIP = strip
 
-$(TARGET): create_configure.h $(OBJECTS) ft8_lib/libft8.a
+$(TARGET): $(OBJECTS) ft8_lib/libft8.a
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(LIBPATH) $(LIBS)
 
-.c.o: $(HEADERS)
+%.d: %.c
+	@set -e; rm -f $@; \
+	$(CC) -M $(CPPFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+include $(SOURCES:.c=.d)
+
+%.o: %.c
 	$(CC) -c $(CFLAGS) $(DEBUGFLAGS) $(INCPATH) -o $@ $<
+
+configure.h: create_configure.h
 
 create_configure.h:
 	$(shell echo "#define STATEDIR \"$(STATEDIR)\"" > configure.h) 
