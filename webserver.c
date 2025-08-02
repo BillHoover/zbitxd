@@ -57,8 +57,7 @@ static void do_login(struct mg_connection *c, char *key) {
   char passkey[20];
   get_field_value("#passkey", passkey);
 
-  // look for key only on non-local ip addresses
-  if ((!key || strcmp(passkey, key)) && (c->rem.ip != 16777343)) {
+  if (!key || strcmp(passkey, key)) {
     web_respond(c, "login error");
     c->is_draining = 1;
     printf("passkey didn't match. Closing socket\n");
@@ -136,7 +135,7 @@ static void web_despatcher(struct mg_connection *c, struct mg_ws_message *wm) {
   if (wm->data.len > 99)
     return;
 
-  strncpy(request, wm->data.ptr, wm->data.len);
+  strncpy(request, wm->data.buf, wm->data.len);
   request[wm->data.len] = 0;
   // handle the 'no-cookie' situation
   char *cookie = NULL;
@@ -190,7 +189,7 @@ static void web_despatcher(struct mg_connection *c, struct mg_ws_message *wm) {
 //   /websocket - upgrade to Websocket, and implement websocket echo server
 //   /rest - respond with JSON string {"result": 123}
 //   any other URI serves static files from s_web_root
-static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
+static void fn(struct mg_connection *c, int ev, void *ev_data) {
   if (ev == MG_EV_OPEN) {
     // c->is_hexdumping = 1;
   } else if (ev == MG_EV_ERROR || ev == MG_EV_CLOSE) {
@@ -200,11 +199,11 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
     //			printf("closing with MG_EV_CLOSE : ");
   } else if (ev == MG_EV_HTTP_MSG) {
     struct mg_http_message *hm = (struct mg_http_message *)ev_data;
-    if (mg_http_match_uri(hm, "/websocket")) {
+    if (mg_match(hm->uri, mg_str("/websocket"), NULL)) {
       // Upgrade to websocket. From now on, a connection is a full-duplex
       // Websocket connection, which will receive MG_EV_WS_MSG events.
       mg_ws_upgrade(c, hm, NULL);
-    } else if (mg_http_match_uri(hm, "/rest")) {
+    } else if (mg_match(hm->uri, mg_str("/rest"), NULL)) {
       // Serve REST response
       mg_http_reply(c, 200, "", "{\"result\": %d}\n", 123);
     } else {
@@ -217,7 +216,6 @@ static void fn(struct mg_connection *c, int ev, void *ev_data, void *fn_data) {
     struct mg_ws_message *wm = (struct mg_ws_message *)ev_data;
     web_despatcher(c, wm);
   }
-  (void)fn_data;
 }
 
 void *webserver_thread_function(void *server) {
