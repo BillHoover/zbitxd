@@ -47,7 +47,7 @@ Without a working WiFi connection, there are only two ways to create this file:
 To do this, the SD card must be mounted on the PC. Since the partition with the directory “/etc/modprobe.d” is formatted with ext4, this is only possible with a PC running Linux. After mounting, enter the following commands in a console:
 ```
 sudo mkdir <mountpoint>/etc/modprobe.d
-echo “options brcmfmac feature_disable=0x2000” | sudo tee <mountpoint>/etc/modprobe.d/brcmfmac.conf
+echo "options brcmfmac feature_disable=0x2000" | sudo tee <mountpoint>/etc/modprobe.d/brcmfmac.conf
 ```
 <mountpoint> has to be replaced with the directory where the SD card was mounted.
 
@@ -57,7 +57,7 @@ echo “options brcmfmac feature_disable=0x2000” | sudo tee <mountpoint>/etc/m
 To do this, the prepared SD card must already be inserted into the zBitx and a monitor and keyboard must also be connected. After logging in to the console, enter the following commands:
 ```
 sudo mkdir /etc/modprobe.d
-echo “options brcmfmac feature_disable=0x2000” | sudo tee /etc/modprobe.d/brcmfmac.conf
+echo "options brcmfmac feature_disable=0x2000" | sudo tee /etc/modprobe.d/brcmfmac.conf
 sudo reboot
 ```
 After restarting, the zBitx should connect to the WiFi network.
@@ -87,20 +87,20 @@ cd wiringpi
 
 zbitxd requires the ALSA aloop driver:
 ```
-echo “snd-aloop” | sudo tee /etc/modules
-echo “options snd-aloop enable=1,1,1 index=1,2,3” | sudo tee /etc/modprobe.d/snd-aloop.conf
+echo "snd-aloop" | sudo tee /etc/modules
+echo "options snd-aloop enable=1,1,1 index=1,2,3" | sudo tee /etc/modprobe.d/snd-aloop.conf
 ```
 
 The boot configuration needs to be modified:
 ```
-echo “# zBitx related options” | sudo tee -a /boot/firmware/config.txt
-echo “gpio=4,5,9,10,11,17,22,27=ip,pu” | sudo tee -a /boot/firmware/config.txt
-echo “gpio=24,23=op,pu” | sudo tee -a /boot/firmware/config.txt
-echo “avoid_warnings=1” | sudo tee -a /boot/firmware/config.txt
-echo “dtoverlay=audioinjector-wm8731-audio” | sudo tee -a /boot/firmware/config.txt
-echo “dtoverlay=i2c-rtc-gpio,ds1307,bus=2,i2c_gpio_sda=13,i2c_gpio_scl=6” | sudo tee -a /boot/firmware/config.txt
-sudo sed -i “s/dtparam=audio=on/##dtparam=audio=on/” /boot/firmware/config.txt
-sudo sed -i “s/dtoverlay=vc4-kms-v3d/dtoverlay=vc4-kms-v3d,noaudio/” /boot/firmware/config.txt
+echo "# zBitx related options" | sudo tee -a /boot/firmware/config.txt
+echo "gpio=4,5,9,10,11,17,22,27=ip,pu" | sudo tee -a /boot/firmware/config.txt
+echo "gpio=24,23=op,pu" | sudo tee -a /boot/firmware/config.txt
+echo "avoid_warnings=1" | sudo tee -a /boot/firmware/config.txt
+echo "dtoverlay=audioinjector-wm8731-audio" | sudo tee -a /boot/firmware/config.txt
+echo "dtoverlay=i2c-rtc-gpio,ds1307,bus=2,i2c_gpio_sda=13,i2c_gpio_scl=6" | sudo tee -a /boot/firmware/config.txt
+sudo sed -i "s/dtparam=audio=on/##dtparam=audio=on/" /boot/firmware/config.txt
+sudo sed -i "s/dtoverlay=vc4-kms-v3d/dtoverlay=vc4-kms-v3d,noaudio/" /boot/firmware/config.txt
 ```
 
 Unlike the original zBitx software, zbitxd does not use its own routines for accurate time. Instead, it uses the Raspberry Pi's system time. Therefore, these must be very accurate, especially for FT8. To achieve this, the fake hardware clock is disabled:
